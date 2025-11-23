@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="assets/image/logo.png" type="image/x-icon">
+
+    <title>Yummy Meal App</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./assets/css/all.min.css" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+
+  <body style="background-color: black">
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="loader">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div id="sideNav" class="side-nav">
+      <!-- زر الإغلاق -->
+      <button
+        id="closeBtn"
+        class="btn-close x-center-right"
+        type="button"
+        aria-label="Close"
+      ></button>
+
+      <!-- Side Navigation Content -->
+      <div class="side-content p-3">
+        <h4 class="mb-4">Yummy</h4>
+        <ul id="sideLinks" class="list-unstyled">
+          <li class="side-item" data-view="search">
+            <i class="fa fa-magnifying-glass me-2"></i> Search
+          </li>
+          <li class="side-item" data-view="categories">
+            <i class="fa fa-layer-group me-2"></i> Categories
+          </li>
+          <li class="side-item" data-view="area">
+            <i class="fa fa-earth-africa me-2"></i> Area
+          </li>
+          <li class="side-item" data-view="ingredients">
+            <i class="fa fa-carrot me-2"></i> Ingredients
+          </li>
+          <li class="side-item" data-view="contact">
+            <i class="fa fa-envelope me-2"></i> Contact
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Top Bar -->
+    <header
+      class="d-flexl align-items-center justify-content-between p-2 shadow-sm bg-white"
+    >
+      <div>
+        <button id="openBtn" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+        </button>
+        <span class="ms-3 fs-4">Yummy Meal App</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mt-3 bg-black vh-100">
+      <div class="row">
+        <div class="col-12">
+          <div id="views" class="p-3">
+            <!-- Default: show initial meals -->
+            <div id="mealsGrid" class="row g-3"></div>
+
+            <!-- Search View -->
+            <div id="view-search" class="d-none view-pane">
+              <h5>Search</h5>
+              <div class="row gy-2">
+                <div class="col-md-6">
+                  <input
+                    id="searchByName"
+                    class="form-control"
+                    placeholder="Search by name (e.g., Arrabiata)"
+                  />
+                </div>
+                <div class="col-md-2">
+                  <input
+                    id="searchByLetter"
+                    class="form-control"
+                    maxlength="1"
+                    placeholder="Search by first letter"
+                  />
+                </div>
+                <div class="col-12 mt-3">
+                  <div id="searchResults" class="row g-3"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Categories View -->
+            <div id="view-categories" class="d-none view-pane">
+              <h5>Categories</h5>
+              <div id="categoriesList" class="row g-2 mt-2"></div>
+              <div id="categoryMeals" class="row g-3 mt-3"></div>
+            </div>
+
+            <!-- Area View -->
+            <div id="view-area" class="d-none view-pane">
+              <h5>Areas</h5>
+              <div id="areaList" class="row g-2 mt-2"></div>
+              <div id="areaMeals" class="row g-3 mt-3"></div>
+            </div>
+
+            <!-- Ingredients View -->
+            <div id="view-ingredients" class="d-none view-pane">
+              <h5>Main Ingredients</h5>
+              <div id="ingredientsList" class="row g-2 mt-2"></div>
+              <div id="ingredientMeals" class="row g-3 mt-3"></div>
+            </div>
+
+            <!-- Contact View -->
+            <div id="view-contact" class="d-none view-pane">
+              <h5>Contact / Registration</h5>
+              <form id="contactForm" class="row g-3 mt-2" novalidate>
+                <div class="col-md-6">
+                  <input
+                    id="nameInput"
+                    class="form-control"
+                    placeholder="Name"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <input
+                    id="emailInput"
+                    class="form-control"
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+                <div class="col-md-4">
+                  <input
+                    id="phoneInput"
+                    class="form-control"
+                    placeholder="Phone"
+                    required
+                  />
+                </div>
+                <div class="col-md-2">
+                  <input
+                    id="ageInput"
+                    class="form-control"
+                    placeholder="Age"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <input
+                    id="passwordInput"
+                    type="password"
+                    class="form-control"
+                    placeholder="Password"
+                    required
+                  />
+                </div>
+                <div class="col-md-6">
+                  <input
+                    id="repasswordInput"
+                    type="password"
+                    class="form-control"
+                    placeholder="Confirm Password"
+                    required
+                  />
+                </div>
+                <div class="col-12">
+                  <button id="submitBtn" class="btn btn-success" disabled>
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Meal Modal -->
+    <div class="modal fade" id="mealModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="modalTitle" class="modal-title"></h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="modalBodyContent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="./assets/js/test.js"></script>
+  </body>
+</html>
